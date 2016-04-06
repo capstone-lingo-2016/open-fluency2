@@ -1,6 +1,5 @@
 package com.openfluency.course
 
-import com.openfluency.Constants
 import com.openfluency.confuser.*;
 import com.openfluency.flashcard.Flashcard
 import com.openfluency.language.Language
@@ -9,11 +8,14 @@ import com.openfluency.language.Language
  *  The Question domain class represents a single question on a quiz
  */
 class Question {
+	/** the flashcard the question is based on */
+	Flashcard flashcard
 	/** the Quiz the question belongs to */
 	Quiz quiz
 	
 	/** This indicates if in this test we're testing pronunciation, meaning, or symbol */
-	Integer questionType
+	Integer questionType // renamed from testElement
+	
 	
 	String question;
 	
@@ -23,12 +25,6 @@ class Question {
 		}
 
 		return query.find()
-	}
-	
-	List<QuestionOption> getWrongOptions() {
-		return QuestionOption.findAll {
-			question == this && answerKey == 0
-		}
 	}
 
 	/** Get all the other options that the user can choose from in addition to the correct answer
@@ -58,4 +54,9 @@ class Question {
 			 return questionType
 		 }
 	 }
+
+    static constraints = {
+		question blank: true, nullable: true
+		flashcard nullable: true
+    }
 }
