@@ -116,6 +116,11 @@ class PreviewDeckService {
 		return "OpenFluency" + File.separator  + this.mediaDir + File.separator + media
 	}
 
+    def setDirs(String mediaTmp,String  mediaDir) {
+        this.mediaTmpDir= mediaTmp
+        this.mediaDir= mediaDir
+    }
+
 	// create open fluency deck from PreviewDeck with
 	@Transactional
 	def createOpenFluencyDeck(Language sourceLanguage, PreviewDeck previewDeckInstance,
