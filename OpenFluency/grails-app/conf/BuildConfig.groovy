@@ -79,6 +79,10 @@ grails.project.dependency.resolution = {
         //runtime ":database-migration:1.3.8"
         // For development - domain changes  - phoebe
         runtime "org.grails.plugins:database-migration:1.4.1"
+        // for heroku
+        runtime 'org.postgresql:postgresql:9.4.1207'
+        compile ':heroku:1.0.1'
+        compile ':cloud-support:1.0.11'
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"
         //runtime ":cached-resources:1.1"

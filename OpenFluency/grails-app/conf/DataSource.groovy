@@ -33,6 +33,17 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
+            driverClassName = "org.postgresql.Driver"
+            dialect = org.hibernate.dialect.PostgreSQLDialect
+            uri = new URI(System.env.DATABASE_URL?:"postgres://admin1:cs599_psw@localhost/test")
+            url = "jdbc:postgresql://" + uri.host + ":" + uri.port + uri.path
+            username = uri.userInfo.split(":")[0]
+            password = uri.userInfo.split(":")[1]
+        }
+    }
+    production_local {
+        dataSource {
+            dbCreate = "update"
             //url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             url = "jdbc:h2:OpenFluency;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             properties {
